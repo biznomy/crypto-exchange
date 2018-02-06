@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.back-image{
+background-image: url("assets/images/exodus-icon-set.png");
+background-repeat:  repeat-x;
+background-color: #cccccc;
+}
+.alert-error{
+    color:#a94442;
+}
+.background-colorzz{
+    background-color: #cccccc;
+}
