@@ -2,11 +2,19 @@
 .back-image{
 background-image: url("assets/images/exodus-icon-set.png");
 background-repeat:  repeat-x;
-background-color: #cccccc;
+background-color: #fff;
+    position: fixed;
+    bottom: 0px;
+    top: 0px;
+    right: 0px;
+    left: 0px;
 }
 .alert-error{
     color:#a94442;
 }
 .background-colorzz{
     background-color: #cccccc;
+}
+.paddingtop-13{
+    padding-top: 13px;
 }
