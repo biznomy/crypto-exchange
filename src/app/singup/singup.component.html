@@ -1,96 +1,126 @@
 <div class="back-image">
-<div class="container">
-  <div style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <div class="panel-title">Sign Up</div>
-        <div style="float:right; font-size: 85%; position: relative; top:-10px">
-          <a routerLink="/login">Sign In</a>
+  <div class="container">
+    <div style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <div class="panel-title">Sign Up</div>
+          <div style="float:right; font-size: 85%; position: relative; top:-10px">
+            <a routerLink="/login">Sign In</a>
+          </div>
         </div>
-      </div>
-      <div class="panel-body">
-        <form id="signupform" class="form-horizontal" role="form">
+        <div class="panel-body">
+          <form id="signupform" class="form-horizontal" role="form">
 
-          <div id="signupalert" style="display:none" class="alert alert-danger">
-            <p>Error:</p>
-            <span></span>
-          </div>
-          <div class="form-group">
-            <label for="email" class="col-md-3 control-label">Email</label>
-            <div class="col-md-9">
-              <input [(ngModel)]="email" type="text" class="form-control" required minlength="4" forbiddenName="bob"
-                 #name="ngModel" class="form-control" name="email" placeholder="Email Address" email="true">
-              <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert-error">
-                <div *ngIf="name.errors.required">
-                  Name is required.
+            <div id="signupalert" style="display:none" class="alert alert-danger">
+              <p>Error:</p>
+              <span></span>
+            </div>
+            <div class="form-group">
+              <label for="email" class="col-md-3 control-label">Email</label>
+              <div class="col-md-9">
+                <input [(ngModel)]="email" type="text" class="form-control" required minlength="4" forbiddenName="bob" #name="ngModel" class="form-control"
+                  name="email" placeholder="Email Address" email="true">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert-error">
+                  <div *ngIf="name.errors.required">
+                    Name is required.
+                  </div>
+                  <div *ngIf="name.errors.minlength">
+                    Name must be at least 4 characters long.
+                  </div>
+                  <div *ngIf="name.errors.forbiddenName">
+                    Name cannot be Bob.
+                  </div>
+                  <div *ngIf="name.errors?.email">
+                    Email not valid.
+                  </div>
                 </div>
-                <div *ngIf="name.errors.minlength">
-                  Name must be at least 4 characters long.
-                </div>
-                <div *ngIf="name.errors.forbiddenName">
-                  Name cannot be Bob.
-                </div>
-                <div *ngIf="name.errors?.email"> 
-                  Email not valid.
-               </div> 
               </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="firstname" class="col-md-3 control-label">First Name</label>
-            <div class="col-md-9">
-              <input [(ngModel)]="firstName" #firstName1="ngModel" required type="text" class="form-control" name="firstName" placeholder="First Name">
-              <div *ngIf="firstName1.invalid && (firstName1.dirty || firstName1.touched)" class="alert-error">
-                <div *ngIf="firstName1.errors.required">
-                  Name is required.
+            <div class="form-group">
+              <label for="firstname" class="col-md-3 control-label">First Name</label>
+              <div class="col-md-9">
+                <input [(ngModel)]="firstName" #firstName1="ngModel" required type="text" class="form-control" name="firstName" placeholder="First Name">
+                <div *ngIf="firstName1.invalid && (firstName1.dirty || firstName1.touched)" class="alert-error">
+                  <div *ngIf="firstName1.errors.required">
+                    Name is required.
+                  </div>
+                  <div *ngIf="firstName1.errors.minlength">
+                    Name must be at least 4 characters long.
+                  </div>
+                  <div *ngIf="firstName1.errors.forbiddenName">
+                    Name cannot be Bob.
+                  </div>
                 </div>
-                <div *ngIf="firstName1.errors.minlength">
-                  Name must be at least 4 characters long.
-                </div>
-                <div *ngIf="firstName1.errors.forbiddenName">
-                  Name cannot be Bob.
-                </div> 
               </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="lastname" class="col-md-3 control-label">Last Name</label>
-            <div class="col-md-9">
-              <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+            <div class="form-group">
+              <label for="lastname" class="col-md-3 control-label">Last Name</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="password" class="col-md-3 control-label">Password</label>
-            <div class="col-md-9">
-              <input type="password" class="form-control" name="passwd" placeholder="Password">
+            <div class="form-group">
+              <label for="password" class="col-md-3 control-label">Password</label>
+              <div class="col-md-9">
+                <input type="password" class="form-control" id="password" required [(ngModel)]="password" name="password" #password1="ngModel">
+                <div [hidden]="password1.valid || password1.pristine" class="alert alert-danger">
+                  Password is required
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="password" class="col-md-3 control-label">confrim password</label>
-            <div class="col-md-9">
-              <input type="password" class="form-control" name="passwd" placeholder="Password">
-            </div>
-          </div>
+            <div class="form-group">
+              <label for="password" class="col-md-3 control-label">confrim password</label>
+              <div class="col-md-9">
+               
+                <input type="password" class="form-control" required validateEqual="password" [(ngModel)]="confirmPassword" name="confirmPassword"
+                  #confirmPassword1="ngModel">
+                <div [hidden]="confirmPassword1.valid || confirmPassword1.pristine" class="alert alert-danger">
+                  Passwords did not match
+                </div>
 
-          <div class="form-group">
-            <label for="icode" class="col-md-3 control-label">Code</label>
-            <div class="col-md-5">
-              <input type="text" class="form-control" name="icode" placeholder="">
+              </div>
             </div>
-            <div class="col-md-4 paddingtop-13" (click)="getOtp($event)"><span><b>Get code</b></span></div>
-          </div>
 
-          <div class="form-group">
-            <!-- Button -->
-            <div class="col-md-offset-3 col-md-9">
-              <button id="btn-signup" (click)="signup($event, item)" type="button" class="btn btn-info">
-                <i class="icon-hand-right"></i> &nbsp; Sign Up</button>
+            <div class="form-group">
+              <label for="icode" class="col-md-3 control-label">Code</label>
+              <div class="col-md-5">
+                <input type="text" class="form-control" name="icode" placeholder="">
+              </div>
+              <div class="col-md-4 paddingtop-13" (click)="getOtp($event)">
+                <span>
+                  <b *ngIf="gettingOtp;else other_content">
+                    <a>{{gettingOtptext}}</a>
+                  </b>
+                  <ng-template #other_content>{{timeout}}</ng-template>
+                </span>
+              </div>
             </div>
-          </div>
-        </form>
+
+            <div class="form-group">
+              <!-- Button -->
+              <div class="col-md-offset-3 col-md-9">
+                <button id="btn-signup" (click)="signup($event, item)" type="button" class="btn btn-info">
+                  <i class="icon-hand-right"></i> &nbsp; Sign Up</button>
+              </div>
+            </div>
+            <div class="form-group" style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+              <label for="password" class="col-md-4 control-label"></label>
+              <div class="col-md-9">
+
+                <a routerLink="/home">
+                  Home
+                </a>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <div class="error-template" *ngIf="errorshow">
+    <div class="alert alert-danger">
+      <strong>Error</strong>{{errormsg}}
+    </div>
+  </div>
 </div>

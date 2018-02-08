@@ -5,12 +5,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HttpModule } from '@angular/http';
 import { DataService } from './service/data.service';
+import { EqualValidator } from './directives/equal-validator.directive'; 
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SingupComponent } from './singup/singup.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ErrorComponent } from './error/error.component';
 
 
 
@@ -19,7 +21,9 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    SingupComponent
+    SingupComponent,
+    ErrorComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,
