@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { SingupComponent } from './singup/singup.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorComponent } from './error/error.component';
+import { ForgetComponent } from './forget/forget.component';
 
 
 
@@ -23,7 +24,8 @@ import { ErrorComponent } from './error/error.component';
     LoginComponent,
     SingupComponent,
     ErrorComponent,
-    EqualValidator
+    EqualValidator,
+    ForgetComponent
   ],
   imports: [
     BrowserModule,

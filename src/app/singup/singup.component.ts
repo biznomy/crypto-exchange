@@ -1,7 +1,7 @@
-import { Component,OnInit,Directive, forwardRef, Attribute,OnChanges, SimpleChanges,Input } from '@angular/core';
-import { NG_VALIDATORS,Validator,Validators,AbstractControl,ValidatorFn } from '@angular/forms';
+import { Component, OnInit, Directive, forwardRef, Attribute, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { NG_VALIDATORS, Validator, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { DataService } from '../service/data.service';
-
+declare var jQuery:any;
 @Component({
   selector: 'app-singup',
   templateUrl: './singup.component.html',
@@ -11,20 +11,21 @@ import { DataService } from '../service/data.service';
 export class SingupComponent implements OnInit {
   email: string;
   firstName: string;
-  LastName: string;
+  lastName: string;
   Sponser: string;
   mobile: string;
   password: any;
-  confirmPassword:any;
+  confirmPassword: any;
   country: string;
   role: string;
-  gettingOtp:boolean;
-  timeout : number;
-  gettingOtptext:string;
-  errorshow : boolean = false;
-  errormsg : string ;
-
-
+  gettingOtp: boolean;
+  timeout: number;
+  gettingOtptext: string;
+  errorshow: boolean = false;
+  errormsg: string;
+  otp:string;
+  successShow:boolean = false;
+  succesmsg :string;
 
   constructor(private dataService: DataService) {
     this.gettingOtptext = "Get code on email";
@@ -36,36 +37,59 @@ export class SingupComponent implements OnInit {
   signup() {
     var d = {
       email: this.email,
-      username:this.firstName,
-      firstname: this.LastName,
+      username: this.firstName,
+      firstname: this.firstName,
+      lastname:this.lastName,
       parent: this.Sponser,
       mobile: this.mobile,
       password: this.password,
-      
-      role:"user"
+      role: "user",
+      otp: this.otp
       //country: "india"
     }
-    this.dataService.saveData("user/register",d).subscribe(data => {
-      console.log(data);
+
+    this.dataService.saveData("user/register", d).subscribe(data => {
+     // this.succesShow("You are registered !  " )
+     jQuery('#myModal .modal-title').html("Welcome");
+     jQuery('#myModal .modal-body').html("<p>Please remember user id for login (sent on email)</p><div><strong>USER ID : "+data.username+"</strong></div>")
+     jQuery('#myModal').modal('show');
     }, err => {
-      this.errorshow = true;
-      this.errormsg = err;
-      setTimeout(()=>{
-        this.errorshow = false;
-      },2000)
+      this.errshow(err);
     });
 
   }
   getOtp() {
     this.gettingOtp = true;
     this.gettingOtptext = "Enter otp from Email";
-    // this.dataService.getCountrylist().subscribe(data => {
-    //   console.log(data)
-    // }, err => {
-    //   console.log(err)
-    // });
+    if (!this.email) {
+     this.errshow("Email is required");
+    }
+    else {
+      let data = { email: this.email };
+      console.log(data);
+      this.dataService.saveData("user/request", this).subscribe(data => {
+        this.succesShow("OTP sent please check your mail INBOX OR SPAM ")
+      }, err => {
+        this.errshow("OTP not send");
+      });
+    }
   }
 
-  
- 
+  errshow(msg){
+    this.errorshow = true;
+    this.errormsg = msg;
+    setTimeout(() => {
+      this.errorshow = false;
+    }, 3000)
+  }
+
+  succesShow(msg){
+    this.successShow = true;
+    this.succesmsg = msg;
+    setTimeout(() => {
+      this.successShow = false;
+    }, 3000)
+  }
+
+
 }

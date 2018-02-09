@@ -5,7 +5,7 @@
             <div class="panel-heading">
                 <div class="panel-title">Sign In</div>
                 <div style="float:right; font-size: 80%; position: relative; top:-10px">
-                    <a href="#">Forgot password?</a>
+                    <a (click)="forgetpassword()">Forgot password?</a>
                 </div>
             </div>
 
@@ -19,20 +19,14 @@
                         <span class="input-group-addon">
                             <i class="glyphicon glyphicon-user"></i>
                         </span>
-                        <input [(ngModel)]="email" type="text" class="form-control" required minlength="4" forbiddenName="bob" #name="ngModel" class="form-control"
-                            name="email" placeholder="Email Address" email="true">
+                        <input [(ngModel)]="email" type="text" class="form-control" required minlength="8"  #name="ngModel" class="form-control"
+                            name="email" placeholder="Email Address">
                         <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert-error">
                             <div *ngIf="name.errors.required">
                                 Name is required.
                             </div>
                             <div *ngIf="name.errors.minlength">
-                                Name must be at least 4 characters long.
-                            </div>
-                            <div *ngIf="name.errors.forbiddenName">
-                                Name cannot be Bob.
-                            </div>
-                            <div *ngIf="name.errors?.email">
-                                Email not valid.
+                                Name must be 8 characters long.
                             </div>
                         </div>
                     </div>
@@ -99,4 +93,14 @@
     </div>
 
 </div>
+<div class="error-template" *ngIf="errorshow">
+    <div class="alert alert-danger">
+      <strong>Error </strong>{{errormsg}}
+    </div>
+  </div>
+  <div class="error-template-s" *ngIf="successShow">
+    <div class="alert alert-success">
+      <strong>Success </strong>{{succesmsg}}
+    </div>
+  </div>
 </div>

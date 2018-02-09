@@ -14,7 +14,7 @@ export class DataService {
   constructor(private http: Http) { }
 
   getData(appendUrl) {
-    return this.http.get(url)
+    return this.http.get(url+appendUrl)
       .map((res: Response) => res.json())
 
   }
