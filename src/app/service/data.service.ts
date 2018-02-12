@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 // };
 
-const url = "http://192.168.1.120:3000/";
+const url = "http://localhost:3000/";
 
 @Injectable()
 export class DataService {
@@ -16,7 +16,6 @@ export class DataService {
   getData(appendUrl) {
     return this.http.get(url+appendUrl)
       .map((res: Response) => res.json())
-
   }
 
   saveData(appendUrl, body) {

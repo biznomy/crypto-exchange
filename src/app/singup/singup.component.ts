@@ -1,5 +1,6 @@
 import { Component, OnInit, Directive, forwardRef, Attribute, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { NG_VALIDATORS, Validator, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataService } from '../service/data.service';
 declare var jQuery:any;
 @Component({
@@ -27,7 +28,7 @@ export class SingupComponent implements OnInit {
   successShow:boolean = false;
   succesmsg :string;
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService,private router:Router) {
     this.gettingOtptext = "Get code on email";
     this.gettingOtp = true;
   }
@@ -53,6 +54,8 @@ export class SingupComponent implements OnInit {
      jQuery('#myModal .modal-title').html("Welcome");
      jQuery('#myModal .modal-body').html("<p>Please remember user id for login (sent on email)</p><div><strong>USER ID : "+data.username+"</strong></div>")
      jQuery('#myModal').modal('show');
+     this.emptyField()
+     this.router.navigateByUrl('/login');
     }, err => {
       this.errshow(err);
     });
@@ -67,14 +70,23 @@ export class SingupComponent implements OnInit {
     else {
       let data = { email: this.email };
       console.log(data);
-      this.dataService.saveData("user/request", this).subscribe(data => {
+      this.dataService.saveData("user/request",data).subscribe(data => {
         this.succesShow("OTP sent please check your mail INBOX OR SPAM ")
       }, err => {
         this.errshow("OTP not send");
       });
     }
   }
+  emptyField(){
+    this.email = "";
+    this.password = "";
+    this.otp ="";
+    this.firstName = "";
+    this.lastName = "";
+    this.Sponser = "";
+    this.mobile = "";
 
+  }
   errshow(msg){
     this.errorshow = true;
     this.errormsg = msg;

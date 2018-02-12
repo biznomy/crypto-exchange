@@ -8,6 +8,7 @@ import { DataService } from '../service/data.service';
 })
 export class LoginComponent implements OnInit {
   email: string;
+  username:string;
   password:string;
   errorshow: boolean = false;
   errormsg: string;
@@ -20,31 +21,17 @@ export class LoginComponent implements OnInit {
 
   }
 
-  forgetpassword(){
-    if (!this.email) {
-      this.errshow("Email is required");
-     }
-     else {
-      let d = {
-        email : this.email
-      }
-      this.dataService.saveData("user/login",d).subscribe(data => {
-        this.succesShow("User Id password sent please check your mail INBOX OR SPAM ")
-      }, err => {
-        console.log(err);
-      });
-     }   
-  }
+ 
 
   login(){
     let d = {
-      username : this.email,
+      username : this.username,
       password: this.password
     }
     this.dataService.saveData("user/login",d).subscribe(data => {
-      console.log(data);
+      this.succesShow("login Successfully");
     }, err => {
-      console.log(err);
+     this.errshow("user id combination is password in Wrong")
     });
   }
 

@@ -5,7 +5,7 @@
             <div class="panel-heading">
                 <div class="panel-title">Sign In</div>
                 <div style="float:right; font-size: 80%; position: relative; top:-10px">
-                    <a (click)="forgetpassword()">Forgot password?</a>
+                    <a routerLink="/forget">Forgot password?</a>
                 </div>
             </div>
 
@@ -19,8 +19,8 @@
                         <span class="input-group-addon">
                             <i class="glyphicon glyphicon-user"></i>
                         </span>
-                        <input [(ngModel)]="email" type="text" class="form-control" required minlength="8"  #name="ngModel" class="form-control"
-                            name="email" placeholder="Email Address">
+                        <input [(ngModel)]="username" type="text" class="form-control" required minlength="8"  #name="ngModel" class="form-control"
+                            name="username" placeholder="User Id">
                         <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert-error">
                             <div *ngIf="name.errors.required">
                                 Name is required.
