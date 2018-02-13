@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   successShow:boolean = false;
   succesmsg :string;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,private router:Router) { }
 
   ngOnInit() {
 
@@ -30,8 +30,15 @@ export class LoginComponent implements OnInit {
     }
     this.dataService.saveData("user/login",d).subscribe(data => {
       this.succesShow("login Successfully");
+      this.dataService.setToken(data.token);
+      if(this.dataService.role === "admin"){
+          this.router.navigateByUrl('/userlist');
+      }else{
+
+      }
+
     }, err => {
-     this.errshow("user id combination is password in Wrong")
+     this.errshow("user id combination is password in Wrong");
     });
   }
 

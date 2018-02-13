@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
+
+
 import { HttpModule } from '@angular/http';
 import { DataService } from './service/data.service';
 import { EqualValidator } from './directives/equal-validator.directive'; 
@@ -14,6 +16,8 @@ import { SingupComponent } from './singup/singup.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorComponent } from './error/error.component';
 import { ForgetComponent } from './forget/forget.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UserlistComponent } from './userlist/userlist.component';
 
 
 
@@ -25,7 +29,9 @@ import { ForgetComponent } from './forget/forget.component';
     SingupComponent,
     ErrorComponent,
     EqualValidator,
-    ForgetComponent
+    ForgetComponent,
+    ProfileComponent,
+    UserlistComponent
   ],
   imports: [
     BrowserModule,
