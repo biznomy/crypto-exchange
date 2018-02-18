@@ -7,14 +7,22 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./userlist.component.css']
 })
 export class UserlistComponent implements OnInit {
-
-  constructor(private dataService : DataService) { }
+  users: any[];
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
-     this.dataService.getData("admin/user/all").subscribe(data => {
-        console.log(data);
-     });
+    this.dataService.getData("admin/user/all").subscribe(data => {
+      console.log(data);
+      this.users = data.filter(user => {
+        return user.role !== "admin"
+      })
+    });
 
   }
-
+  delete() {
+    alert("Delete under development")
+  }
+  edit() {
+    alert("Edit under development")
+  }
 }
